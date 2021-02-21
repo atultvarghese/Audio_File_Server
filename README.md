@@ -1,5 +1,7 @@
 # Audio_File_Server
 CURD on Audio files with FastAPI and MongoDB
+Run as
+> uvicorn main:app
 <h1>Take a look at this docs:</h1>
         <h1>For adding song form_data as</h1>
         {
