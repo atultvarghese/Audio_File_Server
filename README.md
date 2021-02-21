@@ -1,5 +1,5 @@
 # Audio_File_Server
-CURD on Audio files with FastAPI and MongoDB
+CRUD on Audio files with FastAPI and MongoDB
 Run as
 > uvicorn main:app
 <h1>Take a look at this docs:</h1>
