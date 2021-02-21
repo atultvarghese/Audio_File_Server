@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio File Server</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    {% if songs or podcasts or audiobooks%}
+    {% if songs %}
+    <h1>Songs</h1>
+    {% for item in songs -%}
+    <h2>ID : <span style="color: blue;">{{ item["_id"] }}</span></h2><h3>Song Name : <span style="color: blue;">{{ item["name"] }}</span></h3>
+    <audio controls>
+        <source src="{{ url_for('media', path='song/'+item["url"]) }}" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio></br>
+    {%- endfor %}
+    {% endif %}
+    <!-- podcast -->
+    {% if podcasts %}
+    <h1>Podcast</h1>
+    {% for item in podcasts -%}
+    <h2>ID : <span style="color: blue;">{{ item["_id"] }}</span></h2><h3>Song Name : <span style="color: blue;">{{ item["name"] }}</span></h3>
+    <h3>Participants Names : 
+      {% for item in item["participants"] -%}
+      <button style="background-color: rgb(195, 195, 195);height: 30px;"><span style="color: blue;">{{ item }}</span></button>
+      {%- endfor %}
+  </h3>
+    <audio controls>
+        <source src="{{ url_for('media', path='podcast/'+item["url"]) }}" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio></br>
+    {%- endfor %}
+    {% endif %}
+    <!-- audiobook -->
+    {% if audiobooks %}
+    <h1>Audiobooks</h1>
+    {% for item in audiobooks -%}
+    <h2>ID : <span style="color: blue;">{{ item["_id"] }}</span></h2><h3>AudioBook Title : <span style="color: blue;">{{ item["title"] }}</span></h3>
+    <h3>Author : <span style="color: blue;">{{ item["author"] }}</span></h3>
+    <h3>Narrator : <span style="color: blue;">{{ item["narrator"] }}</span></h3>
+      <audio controls>
+        <source src="{{ url_for('media', path='audiobook/'+item["url"]) }}" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio></br>
+    {%- endfor %}
+    {% endif %}
+    {% else %}
+    <h1>There is no song, podcast and audiobooks</h1>
+    {% endif %}
+    <pre>
+      <code>
+      <h1>Take a look at this docs:</h1>
+        <h1>For adding song form_data as</h1>
+        {
+          "name":"Your song name"
+        }
+        <h1>For adding podcast form_data as</h1>
+        {
+          "name":"Your podcast name",
+          "host":"Host name",
+          "participants":["name1","name2"...]
+        }
+        <h1>For adding audiobook form_data as</h1>
+        {
+          "title":"Your audiobook title",
+          "author":"Author name",
+          "narrator":"Narrator name"
+        }
+      </code>
+      <h1><a href="http://localhost:8000/docs">Click Here for Create/Update/Delete </a></h1>
+    </pre>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+html{
+    background-color:rgb(204, 33, 27);
+}
+
+body {
+   position:relative; 
+   left:100px;
+   right: 200px; 
+   padding-left: 100px;   
+   background-color:rgb(156, 173, 175);
+}
